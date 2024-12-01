@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-progress',
@@ -8,6 +9,17 @@ import { Component, Input } from '@angular/core';
   templateUrl: './progress.component.html',
   styleUrl: './progress.component.css'
 })
-export class ProgressComponent {
+export class ProgressComponent implements OnInit {
   @Input() progress: number = 0;
+  // cyclicProgress: number = 10;
+
+  ngOnInit(){
+    // this.CyclicProgress();
+  }
+  
+  // CyclicProgress(){
+  //   while (this.cyclicProgress < 100) {
+  //     this.cyclicProgress += 10;
+  //   }
+  // }
 }

@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { PDFDocumentProxy, PDFProgressData, PdfViewerComponent, PdfViewerModule } from 'ng2-pdf-viewer';
 import { ProgressComponent } from '../progress/progress.component';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../environment/envirnoment';
 
 @Component({
   selector: 'app-pdf',
@@ -10,20 +11,19 @@ import { CommonModule } from '@angular/common';
   templateUrl: './pdf.component.html',
   styleUrl: './pdf.component.css'
 })
-export class PdfComponent implements OnInit {
+export class PdfComponent {
   @ViewChild(PdfViewerComponent) private pdfComponent!: PdfViewerComponent;
-  
-  ngOnInit(): void {
-    // throw new Error('Method not implemented.');
-  }
+  @Output() progressEmit: EventEmitter<number> = new EventEmitter();
 
-  pdfSrc = '/assets/Kholapharda.pdf';
+  pdfSrc = environment.pdfSrc;
+  appconfigPath = 'assets/appconfig.json';
+
   pageNumber = 1;
   totalPages = 0;
   zoom = 1.0;
-  
+
   afterLoadComplete(pdf: PDFDocumentProxy) {
-    this.totalPages = pdf.numPages; 
+    this.totalPages = pdf.numPages;
   }
 
   previousPage() {
@@ -48,9 +48,10 @@ export class PdfComponent implements OnInit {
     }
   }
 
-  size =true;
-  fit =true;
-  pageFit(){
+  size = true;
+  fit = true;
+
+  pageFit() {
     this.zoom = 1.0;
     this.fit = true;
     this.size = true;
@@ -68,35 +69,31 @@ export class PdfComponent implements OnInit {
     link.click();
   }
 
-  printPdf() {
-    const iframe = document.createElement('iframe');
-    iframe.style.position = 'fixed';
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.style.top = '0';
-    iframe.style.left = '0';
-    iframe.src = this.pdfSrc;
-    iframe.onload = () => {
-      setTimeout(() => {
-        iframe.contentWindow?.print();
-        document.body.removeChild(iframe);
-      }, 1);
-    };
-    document.body.appendChild(iframe);
-  }
-
   onPagesLoaded(event: any) {
     this.totalPages = event.pagesCount;
   }
 
-  currentProgress= 0;
+  currentProgress = 0;
   displayHeader = 'flex';
   display = 'Hidden'
+  progress = 'visible';
 
   onProgress(progressData: PDFProgressData) {
-    this.currentProgress = progressData.loaded/progressData.total*100;
-    if(this.currentProgress == 100){
-      this.display = 'visible'
+    this.currentProgress = progressData.loaded / progressData.total * 100;
+    var num = Number((this.currentProgress).toFixed(0));
+
+    this.progressEmit.emit(num);
+    if (this.currentProgress == 100) {
+      this.display = 'visible';
+      this.progress = 'Hidden';
+      this.isFullWidth = false;
+
     }
+  }
+
+  isFullWidth: boolean = true; // Change this to control width
+
+  closeNav() {
+    this.isFullWidth = !this.isFullWidth;
   }
 }

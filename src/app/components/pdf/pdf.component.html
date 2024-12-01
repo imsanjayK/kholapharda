@@ -1,133 +1,24 @@
+<div id="myNav" class="overlay" [ngStyle]="{ height: isFullWidth ? '100%' : '0%'}">
+  <!-- <a *ngIf="isFullWidth" href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a> -->
+  <div class="overlay-content">
+    <a>Kholapharda.in <br>କୁ ସ୍ୱାଗତ</a>
+  </div>
+</div>
+
+<!-- <app-progress [ngStyle]="{'visibility': progress}" [progress]="currentProgress"></app-progress> -->
 <app-progress [progress]="currentProgress"></app-progress>
-<header class="pdf-toolbar">
-  <div class="logo"  style="justify-content: flex-start">
-    <img src="kholapharda_logo.png" width="150px">
-  </div>
-
-  <div class="toolbar">
-    <div class="page-navigate">
-      <span>Page</span>
-      <button (click)="previousPage()" title="Previous Page" class="pervious-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
-          <path
-            d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z" />
-        </svg>
-      </button>
-      <span id="page">{{pageNumber}}</span>
-
-      <button (click)="nextPage()" title="Next Page" class="next-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
-          <path
-            d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z" />
-        </svg>
-      </button>
-      <span> of {{totalPages}}</span>
-    </div>
-    <button (click)="zoomIn()">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-        <path
-          d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM184 296c0 13.3 10.7 24 24 24s24-10.7 24-24l0-64 64 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-64 0 0-64c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 64-64 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l64 0 0 64z" />
-      </svg>
-    </button>
-    <button (click)="zoomOut()">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-        <path
-          d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM136 184c-13.3 0-24 10.7-24 24s10.7 24 24 24l144 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-144 0z" />
-      </svg>
-    </button>
-    <button (click)="pageFit()">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-        <path
-          d="M32 32C14.3 32 0 46.3 0 64l0 96c0 17.7 14.3 32 32 32s32-14.3 32-32l0-64 64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L32 32zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7 14.3 32 32 32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0 0-64zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0 0 64c0 17.7 14.3 32 32 32s32-14.3 32-32l0-96c0-17.7-14.3-32-32-32l-96 0zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l96 0c17.7 0 32-14.3 32-32l0-96z" />
-      </svg>
-    </button>
-  </div>
-  
-  <button (click)="downloadPdf()" title="Download PDF">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-      <path
-        d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 242.7-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7 288 32zM64 352c-35.3 0-64 28.7-64 64l0 32c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-32c0-35.3-28.7-64-64-64l-101.5 0-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352 64 352zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
-    </svg>
-  </button>
-</header>
-
 <div [ngStyle]="{'visibility': display}">
-  <pdf-viewer class="pdf-viewer" [src]="pdfSrc" [render-text]="true" [original-size]="size" 
-  [fit-to-page]="fit"
-    [show-borders]="true" [show-all]="true" [zoom]="zoom" [page]="pageNumber" (pagesLoaded)="onPagesLoaded($event)"
-    (on-progress)="onProgress($event)" (after-load-complete)="afterLoadComplete($event)"
+  <pdf-viewer class="pdf-viewer" [src]="pdfSrc" 
+  [render-text]="true"
+    [original-size]="size" 
+    [fit-to-page]="fit"
+    [show-borders]="true" 
+    [show-all]="true" 
+    [zoom]="zoom" 
+    [page]="pageNumber" 
+    (pagesLoaded)="onPagesLoaded($event)"
+    (on-progress)="onProgress($event)" 
+    (after-load-complete)="afterLoadComplete($event)"
     (page-change)="onPageChange($event)">
   </pdf-viewer>
 </div>
-<footer class="footer">
-  <div class="footer-content">
-    <div class="contact-details">
-      <h3>Contact Us</h3>
-      <p><b>Email:</b> <a href="mailto:kholapharda@gmail.com">kholapharda&#64;gmail.com</a>,
-        <a href="mailto:kholapharda@rediffmail.com">kholapharda&#64;rediffmail.com</a>
-      </p>
-      <p><b>Phone: </b>9937057454, 9438021465, 9861126726, Office: (0674)- 2597071</p>
-      <p><b>Address: </b>Qtrs No-IVR-18/4, Road No-5,Unit No.1, Bhubaneswar, Dist- Khorda, Odisha, India</p>
-    </div>
-    <div class="developer-info">
-      <p><b>Designed & Developed by </b></p>
-      <p>
-        <a href="https://www.linkedin.com/in/bijankumarbhanjadeo/" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="16"
-            height="16" viewBox="0 0 256 256" xml:space="preserve">
-
-            <defs>
-            </defs>
-            <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
-              transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
-              <path
-                d="M 0 6.447 C 0 2.887 2.978 0 6.651 0 h 76.698 C 87.022 0 90 2.887 90 6.447 v 77.106 C 90 87.114 87.022 90 83.349 90 H 6.651 C 2.978 90 0 87.114 0 83.553 V 6.447 z"
-                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,102,153); fill-rule: nonzero; opacity: 1;"
-                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-              <path
-                d="M 20.485 29.151 c 4.74 0 7.691 -3.121 7.691 -7.021 c -0.088 -3.988 -2.95 -7.022 -7.601 -7.022 c -4.65 0 -7.69 3.034 -7.69 7.022 c 0 3.9 2.95 7.021 7.512 7.021 H 20.485 L 20.485 29.151 z"
-                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
-                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-              <path d="M 27.282 75.339 v -40.64 H 13.688 v 40.64 H 27.282 z"
-                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
-                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-              <path
-                d="M 34.804 75.339 h 13.594 V 52.644 c 0 -1.215 0.088 -2.428 0.447 -3.296 c 0.983 -2.427 3.219 -4.94 6.975 -4.94 c 4.919 0 6.887 3.727 6.887 9.19 v 21.741 h 13.592 V 52.037 c 0 -12.483 -6.706 -18.291 -15.65 -18.291 c -7.333 0 -10.553 4.073 -12.342 6.847 h 0.091 v -5.894 H 34.804 C 34.982 38.513 34.804 75.339 34.804 75.339 L 34.804 75.339 z"
-                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
-                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-            </g>
-          </svg>
-          Bijan Kumar Bhanja Deo</a>
-      </p>
-      <p>
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="16"
-          height="16" viewBox="0 0 256 256" xml:space="preserve">
-
-          <defs>
-          </defs>
-          <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
-            transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
-            <path
-              d="M 0 6.447 C 0 2.887 2.978 0 6.651 0 h 76.698 C 87.022 0 90 2.887 90 6.447 v 77.106 C 90 87.114 87.022 90 83.349 90 H 6.651 C 2.978 90 0 87.114 0 83.553 V 6.447 z"
-              style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,102,153); fill-rule: nonzero; opacity: 1;"
-              transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-            <path
-              d="M 20.485 29.151 c 4.74 0 7.691 -3.121 7.691 -7.021 c -0.088 -3.988 -2.95 -7.022 -7.601 -7.022 c -4.65 0 -7.69 3.034 -7.69 7.022 c 0 3.9 2.95 7.021 7.512 7.021 H 20.485 L 20.485 29.151 z"
-              style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
-              transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-            <path d="M 27.282 75.339 v -40.64 H 13.688 v 40.64 H 27.282 z"
-              style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
-              transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-            <path
-              d="M 34.804 75.339 h 13.594 V 52.644 c 0 -1.215 0.088 -2.428 0.447 -3.296 c 0.983 -2.427 3.219 -4.94 6.975 -4.94 c 4.919 0 6.887 3.727 6.887 9.19 v 21.741 h 13.592 V 52.037 c 0 -12.483 -6.706 -18.291 -15.65 -18.291 c -7.333 0 -10.553 4.073 -12.342 6.847 h 0.091 v -5.894 H 34.804 C 34.982 38.513 34.804 75.339 34.804 75.339 L 34.804 75.339 z"
-              style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
-              transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-          </g>
-        </svg><a href="https://www.linkedin.com/in/imsanjay95/" target="_blank">Sanjay Kumar</a>
-      </p>
-    </div>
-    <div class="copyright">
-      <p><b>&copy; 2024 Kholapharda. All rights reserved.</b></p>
-    </div>
-  </div>
-</footer>

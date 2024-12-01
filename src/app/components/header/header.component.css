@@ -1,0 +1,135 @@
+/*#region Header */
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+
+/*#endregion */
+
+/*#region svg button*/
+button {
+  display: inline-flex;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  color: #495057;
+  cursor: pointer;
+  transition: background-color 3s ease;
+  align-items: center;
+}
+
+button svg {
+  width: 20px;
+  height: 20px;
+  fill: #495057;
+}
+
+button svg:hover {
+  fill: #007bff;
+}
+
+/*#endregion */
+
+/*#region Visitors Countor */
+.visitors-counter {
+  color: white;
+  font-weight: 700;
+  text-align: center;
+}
+
+.visitor {
+  color: #495057;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.counter {
+  background-color: #ee1d23;
+  border-radius: 30px;
+  padding: 0px 10px;
+  font-size: 20px;
+}
+
+/*#endregion */
+
+/*#region menu*/
+.overlay {
+  height: 100%;
+  width: 0%;
+  position: fixed;
+  z-index: 1;
+  top: 70px;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.700);
+  overflow-y: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 0%;
+  width: 100%;
+  text-align: center;
+  /* margin-top: 30px; */
+}
+
+.overlay a {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 8px;
+  text-decoration: none;
+  font-size: 30px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+  /* color: #f1f1f1; */
+  background-color: #f8f9fa;
+  color: black;
+}
+
+/*
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  } 
+}*/
+
+/*#endregion */
+
+/*#region Menu */
+#menu {
+  display: none;
+}
+
+/*#endregion */
+
+/*#region local date time */
+.datetime {
+  position: absolute;
+  top: 40px;
+  right: 12px;
+  font-size: small;
+  font-weight: 600;
+}
+/*#endregion */
